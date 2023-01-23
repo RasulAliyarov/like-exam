@@ -1,0 +1,52 @@
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.header {
+    padding: 30px 0;
+    background-color: #FEE2B3;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__left {
+            .logo {
+                font-weight: 600;
+                font-size: 32px;
+                font-family: sans-serif;
+            }
+        }
+
+        &__right {
+            a {
+                font-family: sans-serif;
+                font-weight: 600;
+                font-size: 18px;
+                padding: 5px 10px;
+                &:last-child {
+                    margin-left: 20px;
+                }
+            }
+        }
+
+        .activeLink {
+            border: 1px solid black;
+            padding: 10px 10px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    }
+}

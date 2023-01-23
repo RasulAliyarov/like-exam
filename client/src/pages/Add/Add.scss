@@ -1,0 +1,70 @@
+.add {
+    height: 100vh;
+    background: #009FFF;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ec2F4B, #009FFF);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    &__wrapper {
+
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &__form {
+            padding: 30px;
+            width: 400px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+
+            h1 {
+                color: #009FFF;
+                font-family: sans-serif;
+                margin-top: 0;
+            }
+
+            input {
+                margin-bottom: 20px;
+                padding: 10px;
+                border-radius: 6px;
+                border: 1px solid gray;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            textarea {
+                padding: 10px;
+                border-radius: 6px;
+                border: 1px solid gray;
+                margin-bottom: 20px;
+                resize: vertical;
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            button {
+                padding: 10px 60px;
+                margin: 0 auto;
+                cursor: pointer;
+                border: none;
+                border-radius: 8px;
+                background-color: #009FFF;
+                color: white;
+                font-weight: 600;
+                width: fit-content;
+            }
+        }
+    }
+}
+
+.errorMessage{
+    color: red;
+}
