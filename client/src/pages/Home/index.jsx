@@ -1,4 +1,6 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
 import "./Home.scss"
 
 const PRACTISE_CARD = [
@@ -29,9 +31,20 @@ const PRACTISE_CARD = [
 ]
 
 function Home() {
+  let [data, setData] = useState([])
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/customers").then(res => {
+      setData(res.data)
+      console.log(res.data)
+    })
+  }, [])
+
+
+  console.log(data)
+
   return (
     <>
-      <div className="home">
+      <div  className="home">
         <div className="home__background">
           <div className="home__background__text container">
             <h1>Notary Public &</h1>
@@ -90,19 +103,27 @@ function Home() {
             </div>
 
             <div className="home__customers__wrapper__customersCards ">
-
-              <div className="home__customers__wrapper__customersCards__customerCard">
-                <div className='home__customers__wrapper__customersCards__customerCard__top'>
-                  <div className='customerImg'><img src="https://images.unsplash.com/photo-1468488718849-422a2a5efc03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="" /></div>
-                  <div className='info'>
-                    <h4>Lina Gold</h4>
-                    <span>Owner, Ford</span>
-                  </div>
-                </div>
-                <div className="home__customers__wrapper__customersCards__customerCard__bottom">
-                  <p>"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita perspiciatis quisquam fugit nesciunt error inventore quisquam  voluptatum."</p>
-                </div>
-              </div>
+              {
+                data.map(value => {
+                  return (
+                    <div key={value._id} className="home__customers__wrapper__customersCards__customerCard">
+                      <div className='home__customers__wrapper__customersCards__customerCard__top'>
+                        <div className='customerImg'><img src="https://images.unsplash.com/photo-1468488718849-422a2a5efc03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="" /></div>
+                        <div className='info'>
+                          <h4>{value.name}</h4>
+                          <span>{value.city}</span>
+                        </div>
+                      </div>
+                      <div className="home__customers__wrapper__customersCards__customerCard__bottom">
+                        <p>{value.desc}</p>
+                        <button onClick={() => {
+                          axios.delete(`http://localhost:8080/api/customers/${value._id}`)
+                        }}>Delete</button>
+                      </div>
+                    </div>
+                  )
+                })
+              }
 
             </div>
           </div>
